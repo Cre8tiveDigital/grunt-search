@@ -19,6 +19,7 @@ module.exports = function(grunt) {
 			logFormat: 'json', // json/xml/text/junit/custom/console
 			customLogFormatCallback: null,
 			failOnMatch: false,
+			failOnNoMatch: false,
 			scopeMatchToFile: false,
 			JUnitTestsuiteName: 'jshint',
 			JUnitFailureMessage: 'Substring matched',
@@ -141,6 +142,9 @@ module.exports = function(grunt) {
 			// write the log file - even if there are no results. It'll just contain a "numResults: 0" which is useful
 			// in of itself
 			_generateLogFile(options, filePaths, matches, numMatches);
+			if (numMatches < 1 && options.failOnNoMatch) {
+				grunt.fail.fatal("No Matches found");
+			}
 			if (numMatches > 0 && options.failOnMatch) {
 				grunt.fail.fatal("Matches of " + options.searchString.toString() + " found");
 			}
