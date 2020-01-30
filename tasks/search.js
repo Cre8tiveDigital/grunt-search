@@ -143,7 +143,7 @@ module.exports = function(grunt) {
 			// in of itself
 			_generateLogFile(options, filePaths, matches, numMatches);
 			if (numMatches < 1 && options.failOnNoMatch) {
-				grunt.fail.fatal("No Matches found");
+				grunt.fail.fatal("Did not find tracking pixel please add and try again");
 			}
 			if (numMatches > 0 && options.failOnMatch) {
 				grunt.fail.fatal("Matches of " + options.searchString.toString() + " found");
